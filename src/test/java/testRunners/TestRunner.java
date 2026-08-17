@@ -1,7 +1,6 @@
 package testRunners;
 
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.Parameters;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 import utils.Base;
 import utils.BrowserFactory;
@@ -9,7 +8,6 @@ import utils.BrowserFactory;
 public class TestRunner extends Base {
 
     @Test
-    @Parameters("browser")
     public void loginTest() throws InterruptedException {
         homePage.verifyHomePageIsLoaded();
         homePage.clickLoginButton();
@@ -27,7 +25,7 @@ public class TestRunner extends Base {
 
     }
 
-    @AfterClass
+    @AfterMethod
     public void tearDown(){
         BrowserFactory.quitDriver();
     }

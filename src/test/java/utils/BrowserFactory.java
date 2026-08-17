@@ -38,7 +38,10 @@ public class BrowserFactory {
     }
 
     public static void quitDriver(){
-        driver.get().quit();
-        driver.remove();
+        WebDriver currentDriver = driver.get();
+        if (currentDriver != null) {
+            currentDriver.quit();
+            driver.remove();
+        }
     }
 }
