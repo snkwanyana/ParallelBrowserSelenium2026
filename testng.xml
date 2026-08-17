@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
+    <listeners>
+        <listener class-name="extentReport.ExtendReportManager"></listener>
+    </listeners>
+    <test verbose="2" preserve-order="true" name="C:/Frameworks/ParallelBrowserSelenium2026">
+        <classes>
+            <class name="testRunners.TestRunner">
+                <methods>
+                    <include name="loginTest"/>
+                    <include name="contactListNameTest"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
