@@ -5,7 +5,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.safari.SafariDriver;
 
 
@@ -16,24 +18,30 @@ public class BrowserFactory {
     public static WebDriver getDriver(String browser, String url){
         if (browser.equalsIgnoreCase("chrome")){
             ChromeOptions options = new ChromeOptions();
-//            options.addArguments("--headless=new");
+            options.addArguments("--headless=new");
             options.addArguments("--incognito");
             driver.set(new ChromeDriver(options));
 
         }else if (browser.equalsIgnoreCase("firefox")){
-            driver.set(new FirefoxDriver());
+            FirefoxOptions options = new FirefoxOptions();
+            options.addArguments("--headless");
+            options.addArguments("--private");
+            driver.set(new FirefoxDriver(options));
 
         }else if (browser.equalsIgnoreCase("Safari")){
             driver.set(new SafariDriver());
 
         }else {
-            driver.set(new EdgeDriver());
+            EdgeOptions options = new EdgeOptions();
+            options.addArguments("--headless=new");
+            options.addArguments("--inprivate");
+            driver.set(new EdgeDriver(options));
             
         }
 
         driver.get().get(url);
-//        driver.get().manage().window().setSize(new Dimension(1920,1080));
-        driver.get().manage().window().maximize();
+        driver.get().manage().window().setSize(new Dimension(1920,1080));
+//        driver.get().manage().window().maximize();
         return driver.get();
     }
 
