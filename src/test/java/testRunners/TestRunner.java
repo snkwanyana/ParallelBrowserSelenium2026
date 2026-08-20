@@ -1,7 +1,7 @@
 package testRunners;
 
 import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeClass;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import testData.ReadFromDatabase;
 import utils.Base;
@@ -9,17 +9,17 @@ import utils.BrowserFactory;
 
 public class TestRunner extends Base {
 
-    @BeforeClass
-    public void setupData(){
-        ReadFromDatabase.dbConnection();
+    @DataProvider(name = "loginData")
+    public Object[][] loginData() {
+        return ReadFromDatabase.getLoginData();
     }
 
-    @Test
-    public void loginTest() throws InterruptedException {
+    @Test(dataProvider = "loginData")
+    public void loginTest(String username, String password) throws InterruptedException {
         homePage.verifyHomePageIsLoaded();
         homePage.clickLoginButton();
-        loginPage.enterUsername(ReadFromDatabase.getUsername);
-        loginPage.enterPassword(ReadFromDatabase.getPassword);
+        loginPage.enterUsername(username);
+        loginPage.enterPassword(password);
         loginPage.clickLoginButton();
         dashboardPage.validateLoginScreen();
     }

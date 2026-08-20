@@ -1,0 +1,59 @@
+name: Selenium Parallel Pipeline
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+          cache: maven
+
+      - name: Build and Run Tests
+        run: mvn clean test -Dheadless=true
+
+      - name: Upload Selenium Report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: selenium-report
+          path: Reports/
+
+      - name: Send Email with the Report
+        if: always()
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 587
+          secure: false
+
+          username: ${{ secrets.EMAIL_USERNAME2 }}
+          password: ${{ secrets.EMAIL_PASSWORD2 }}
+
+          subject: Selenium Test Report
+
+#          to: sibusison@ndosiautomation.co.za
+          to: snkwanyana@gmail.com
+          from: ${{ secrets.EMAIL_USERNAME2 }}
+
+          body: |
+            Hello,
+
+            The Selenium test report is attached.
+
+            Regards,
+            Your CI/CD Pipeline
+
+          attachments: Reports/NdosiAutomationReport.html
