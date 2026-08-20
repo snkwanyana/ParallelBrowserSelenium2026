@@ -13,7 +13,7 @@ public class ReadFromDatabase {
         String dbUsername = "ndosian6b8b7_teaching";
         String dbPassword = "^{SF0a=#~[~p)@l1";
 
-        try (Connection connection = DriverManager.getConnection(dbUrl, dbUsername, dbPassword)) {
+        try (Connection connection = DatabaseConnection.getDBConnection(dbUrl, dbUsername, dbPassword)) {
             try (Statement statement = connection.createStatement();
                  ResultSet resultSet = statement.executeQuery("SELECT * FROM users WHERE id = 2")){
 
