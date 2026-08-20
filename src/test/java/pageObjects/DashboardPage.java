@@ -14,7 +14,7 @@ public class DashboardPage {
 
     WebDriver driver;
 
-    By loginVerification = By.tagName("h2");
+    By loginVerification = By.xpath("//span[contains(text(),'Welcome')]");
 
     public DashboardPage(WebDriver driver){
         this.driver = driver;

@@ -1,5 +1,7 @@
 package testData;
 
+import utils.ReadFromProperty;
+
 import java.sql.*;
 
 public class ReadFromDatabase {
@@ -8,10 +10,9 @@ public class ReadFromDatabase {
     public static String getPassword;
 
     public static void dbConnection() {
-
-        String dbUrl = "jdbc:mysql://102.222.124.22:3306/ndosian6b8b7_teaching";
-        String dbUsername = "ndosian6b8b7_teaching";
-        String dbPassword = "^{SF0a=#~[~p)@l1";
+        String dbUrl = ReadFromProperty.getRequiredProperty("dbUrl");
+        String dbUsername = ReadFromProperty.getRequiredProperty("dbUsername");
+        String dbPassword = ReadFromProperty.getRequiredProperty("dbPassword");
 
         try (Connection connection = DatabaseConnection.getDBConnection(dbUrl, dbUsername, dbPassword)) {
             try (Statement statement = connection.createStatement();

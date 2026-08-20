@@ -19,7 +19,7 @@ public class Base {
     @BeforeMethod
     @Parameters("browser")
     public void setUp(String browser){
-        this.driver = BrowserFactory.getDriver(browser, "https://ndosisimplifiedautomation.vercel.app/");
+        this.driver = BrowserFactory.getDriver(browser, ReadFromProperty.getRequiredProperty("baseUrl"));
         this.homePage = new HomePage(driver);
         this.loginPage = new LoginPage(driver);
         this.dashboardPage = new DashboardPage(driver);
