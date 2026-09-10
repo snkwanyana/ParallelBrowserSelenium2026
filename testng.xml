@@ -7,21 +7,14 @@
     <test name="ChromeTest">
         <parameter name="browser" value="chrome"/>
         <classes>
-            <class name="testRunners.TestRunner">
-            </class>
-        </classes>
-    </test>
-    <test name="FireFoxTest">
-        <parameter name="browser" value="firefox"/>
-        <classes>
-            <class name="testRunners.TestRunner">
+            <class name="testRunners.TestRunnerWithExcel">
             </class>
         </classes>
     </test>
     <test name="EdgeTest">
         <parameter name="browser" value="edge"/>
         <classes>
-            <class name="testRunners.TestRunner">
+            <class name="testRunners.TestRunnerWithExcel">
             </class>
         </classes>
     </test>
